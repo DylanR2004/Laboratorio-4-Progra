@@ -1,0 +1,107 @@
+#include <iostream>
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+
+using namespace std;
+
+// Declaracion de funciones
+double realizarOperacion(double num1, double num2, char operador);
+void imprimirResultado(double resultado);
+
+int main() {
+    int cantidadOperaciones;
+    cout << "Ingrese la cantidad de operaciones a realizar: ";
+    cin >> cantidadOperaciones;
+
+    // Limpiar pantalla después de ingresar la cantidad de operaciones
+    system("cls");
+
+    for (int i = 0; i < cantidadOperaciones; ++i) {
+        double numero1, numero2, resultado;
+        char operador;
+
+        cout << "Menu de operaciones:" << endl;
+        cout << "1. Suma (+)" << endl;
+        cout << "2. Resta (-)" << endl;
+        cout << "3. Multiplicacion (*)" << endl;
+        cout << "4. Division (/)" << endl;
+        cout << "Ingrese el numero de la operacion deseada: ";
+        int opcion;
+        cin >> opcion;
+
+        // Limpiar pantalla después de ingresar la opción
+        system("cls");
+
+        cout << "Ingrese el primer numero: ";
+        cin >> numero1;
+        cout << "Ingrese el segundo numero: ";
+        cin >> numero2;
+
+        switch (opcion) {
+            case 1:
+                operador = '+';
+                break;
+            case 2:
+                operador = '-';
+                break;
+            case 3:
+                operador = '*';
+                break;
+            case 4:
+                operador = '/';
+                break;
+            default:
+                cout << "Opcion no valida." << endl;
+                continue;
+        }
+
+        resultado = realizarOperacion(numero1, numero2, operador);
+        imprimirResultado(resultado);
+
+        // Esperar a que el usuario presione una tecla para continuar
+        cout << "Presione cualquier tecla para continuar...";
+        cin.ignore();
+        cin.get();
+
+        // Limpiar pantalla después de cada operación
+        system("cls");
+    }
+
+    cout << "Numero de opciones realizadas. Por favor, si necesita realizar mas opciones, ingrese su cantidad." << endl;
+
+    return 0;
+}
+
+// Implementacion de la funcion para realizar operaciones matematicas
+double realizarOperacion(double num1, double num2, char operador) {
+    double resultado;
+    switch (operador) {
+        case '+':
+            resultado = num1 + num2;
+            break;
+        case '-':
+            resultado = num1 - num2;
+            break;
+        case '*':
+            resultado = num1 * num2;
+            break;
+        case '/':
+            if (num2 != 0)
+                resultado = num1 / num2;
+            else {
+                cout << "Error: No se puede dividir por cero." << endl;
+                resultado = 0;
+            }
+            break;
+        default:
+            cout << "Operador no valido." << endl;
+            resultado = 0;
+    }
+    return resultado;
+}
+
+// Implementacion de la funcion para imprimir los resultados
+void imprimirResultado(double resultado) {
+    cout << "El resultado es: " << resultado << endl;
+}
